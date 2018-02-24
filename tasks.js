@@ -5,7 +5,17 @@
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
  */
 function getMinMax(string) {
-
+  let arr = string.split(' ');
+  let min,max;
+  for (a of arr){
+    a = parseFloat(a);
+    if (typeof a === 'number' && !isNaN(a)){
+      if (min === undefined || min > a) min = a;
+      if (max === undefined || max < a) max = a;
+    }
+  }
+  return {min: min, max: max};
+  
 }
 
 /* ============================================= */
@@ -30,7 +40,15 @@ function fibonacciSimple(x) {
  * @return {number} число под номером х
  */
 function fibonacciWithCache(x) {
-  return x;
+  let cache = {};
+  if (!(x in cache)){
+    cache[x] = (x) => {
+      if (x === 1) return 1;
+      if (x === 0) return 0;
+      return fibonacciWithCache(x-2) + fibonacciWithCache(x-1);
+    }
+  }
+  return cache[x];
 }
 
 /* ============================================= */
