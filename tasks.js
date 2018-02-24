@@ -39,15 +39,28 @@ function fibonacciSimple(x) {
  * @return {number} число под номером х
  */
 function fibonacciWithCache(x) {
-  let cache = {};
-  if (!(x in cache)){
-    cache[x] = (x) => {
-      if (x === 1) return 1;
-      if (x === 0) return 0;
-      return fibonacciWithCache(x-2) + fibonacciWithCache(x-1);
-    }
+  //console.log(this.cache);
+  if (this.cache === undefined){
+    this.cache = {};
   }
-  return cache[x];
+  if (x in this.cache){
+    return this.cache[x];
+  }else{
+    let a;
+    switch(x) {
+      case 1: 
+        a = 1;
+        break;
+      case 0: 
+        a = 0;
+        break;
+      default:
+        a = fibonacciWithCache(x-2) + fibonacciWithCache(x-1);
+        break;
+    }
+    this.cache[x] = a;
+    return a;
+  }
 }
 
 /* ============================================= */
