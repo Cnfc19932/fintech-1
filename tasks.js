@@ -15,7 +15,6 @@ function getMinMax(string) {
     }
   }
   return {min: min, max: max};
-  
 }
 
 /* ============================================= */
@@ -80,5 +79,25 @@ function printNumbers(max, cols) {
  * @return {string}
  */
 function rle(input) {
-
+  let last,i,output = '',j = 0;
+  const count = (x) => x === 1 ? '' : x;
+  for (s of input){
+    j++;
+    if (last === undefined){
+      i = 1;
+      last = s;
+    }else{
+      if (last === s) i++;
+      else{
+        output += last + count(i);
+        i = 1;
+        last = s;
+      }
+    }
+    if (j === input.length) output += s + count(i);
+  }
+  return output;
 }
+
+//console.log(rle('AAAB'));
+//console.log(rle('BCCDDDEEEE'));
