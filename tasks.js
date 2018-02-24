@@ -81,9 +81,39 @@ function fibonacciWithCache(x) {
  * @return {string}
  */
 function printNumbers(max, cols) {
+  let output = '', count_numbers = max + 1, n = 0, arr = [];
+  const lines = Math.ceil(count_numbers/cols);
+ // console.log(lines);
 
+  for (let i = 0; i < lines; i++){
+    arr[i] = [];
+    for (j = 0; j < cols; j++) {
+      if (n < count_numbers){
+        console.log(n);
+        arr[i][j] = (lines-1)*j + i - 1;
+      //  console.log(i,j,arr[i][j]);
+        n++;
+      }
+    }
+  }
+  /*for (let j = 0; j < cols; j++){
+    for (let i = 0; i < lines; i++){
+      if (n <= max){
+        arr[i][j] = n;
+        n++;
+      }else break;
+    }
+  }
+  */
+  console.log(arr);
 }
 
+//printNumbers(11, 3);
+//printNumbers(10, 3);
+printNumbers(12, 3);
+//printNumbers(11, 1);
+//printNumbers(11, 2);
+//printNumbers(7, 2);
 /* ============================================= */
 
 /**
