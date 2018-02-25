@@ -94,13 +94,22 @@ function printNumbers(max, cols) {
   }
 
   if (cols === 0) return ;
-  for (let i = 0; i < lines; i++){
-    arr[i] = [];
-    for (j = 0; j < cols; j++) {
-      if (n < count_numbers){
-        arr[i][j] = (j === 0) ? i : j*(lines-1) + i + 1;
-        arr[i][j] = format(arr[i][j]);
+
+  for (let i = 0; i < lines; i++) arr[i] = [];
+
+  for (let i = 0; i < lines; i++)
+    for (let j = 0; j < cols; j++){
+      arr[i][j] = n < count_numbers ? true : false;
+      n++;
+    }
+  n = 0;
+  for (let j = 0; j < cols; j++){
+    for (i = 0; i < lines; i++) {
+      if (arr[i][j]){
+        arr[i][j] = format(n);
         n++;
+      }else{
+        arr[i][j] = '';
       }
     }
   }
@@ -112,11 +121,10 @@ function printNumbers(max, cols) {
 
 }
 
-//printNumbers(0, 3);
-//printNumbers(1, 3);
-//console.log(printNumbers(11, 3));
-//printNumbers(10, 3);
-//console.log(printNumbers(12, 3));
+console.log(printNumbers(0, 3),'\n');
+console.log(printNumbers(1, 3),'\n');
+console.log(printNumbers(11, 3),'\n');
+console.log(printNumbers(12, 3),'\n');
 //printNumbers(11, 1);
 //printNumbers(11, 2);
 //printNumbers(7, 2);
