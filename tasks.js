@@ -5,8 +5,9 @@
  * '1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028' => { min: -1028, max: 15 }
  */
 function getMinMax(string) {
-  let arr = string.split(' ');
+  let arr = string.match(/[+-]?([0-9]*[.])?[0-9]+/g);
   let min,max;
+
   for (a of arr){
     a = parseFloat(a);
     if (typeof a === 'number' && !isNaN(a)){
@@ -15,8 +16,11 @@ function getMinMax(string) {
     }
   }
   return {min: min, max: max};
+  
 }
 
+//getMinMax('1 и 6.45, -2, но 8, а затем 15, то есть 2.7 и -1028');
+//getMinMax('1.32 32.2 .3 123 13.0001');
 /* ============================================= */
 
 /**
@@ -83,34 +87,36 @@ function fibonacciWithCache(x) {
 function printNumbers(max, cols) {
   let output = '', count_numbers = max + 1, n = 0, arr = [];
   const lines = Math.ceil(count_numbers/cols);
- // console.log(lines);
 
+  const format = (s) => {
+    if (s <= 9) return ' ' + s;
+    return s;
+  }
+
+  if (cols === 0) return ;
   for (let i = 0; i < lines; i++){
     arr[i] = [];
     for (j = 0; j < cols; j++) {
       if (n < count_numbers){
-        console.log(n);
-        arr[i][j] = (lines-1)*j + i - 1;
-      //  console.log(i,j,arr[i][j]);
+        arr[i][j] = (j === 0) ? i : j*(lines-1) + i + 1;
+        arr[i][j] = format(arr[i][j]);
         n++;
       }
     }
   }
-  /*for (let j = 0; j < cols; j++){
-    for (let i = 0; i < lines; i++){
-      if (n <= max){
-        arr[i][j] = n;
-        n++;
-      }else break;
-    }
-  }
-  */
-  console.log(arr);
+
+
+  output = arr.map(s => s.join(' '));
+
+  return output.join('\n');
+
 }
 
-//printNumbers(11, 3);
+//printNumbers(0, 3);
+//printNumbers(1, 3);
+//console.log(printNumbers(11, 3));
 //printNumbers(10, 3);
-printNumbers(12, 3);
+//console.log(printNumbers(12, 3));
 //printNumbers(11, 1);
 //printNumbers(11, 2);
 //printNumbers(7, 2);
