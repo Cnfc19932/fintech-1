@@ -121,10 +121,10 @@ function printNumbers(max, cols) {
 
 }
 
-console.log(printNumbers(0, 3),'\n');
-console.log(printNumbers(1, 3),'\n');
-console.log(printNumbers(11, 3),'\n');
-console.log(printNumbers(12, 3),'\n');
+//console.log(printNumbers(0, 3),'\n');
+//console.log(printNumbers(1, 3),'\n');
+//console.log(printNumbers(11, 3),'\n');
+//console.log(printNumbers(12, 3),'\n');
 //printNumbers(11, 1);
 //printNumbers(11, 2);
 //printNumbers(7, 2);
