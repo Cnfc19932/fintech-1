@@ -6,18 +6,17 @@
  */
 function fibonacciWithCache(x) {
   //console.log(this.cache);
-  if (fibonacciWithCache.cache === undefined){
-
-    fibonacciWithCache.cache = {};
+  if (this.cache === undefined){
+    this.cache = {};
   }
-  if (x in fibonacciWithCache.cache){
-    return fibonacciWithCache.cache[x];
+  if (x in this.cache){
+    return this.cache[x];
   }else{
     let a;
     switch(x) {
       case 1: 
         a = 1;
-        break; 
+        break;
       case 0: 
         a = 0;
         break;
@@ -25,7 +24,7 @@ function fibonacciWithCache(x) {
         a = fibonacciWithCache(x-2) + fibonacciWithCache(x-1);
         break;
     }
-    fibonacciWithCache.cache[x] = a;
+    this.cache[x] = a;
     return a;
   }
 }
